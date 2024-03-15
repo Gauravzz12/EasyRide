@@ -80,6 +80,7 @@ function Bookings() {
             <tr>
               <th>Name</th>
               <th>Email</th>
+              <th>CabId</th>
               <th>Source</th>
               <th>Destination</th>
               <th>Start</th>
@@ -93,6 +94,7 @@ function Bookings() {
               <tr key={index}>
                 <td>{booking.details[0].name}</td>
                 <td>{booking.details[0].email}</td>
+                <td>{booking.cabId}</td>
                 <td>{booking.details[0].source}</td>
                 <td>{booking.details[0].destination}</td>
                 <td>{booking.details[0].bookingTime}</td>
