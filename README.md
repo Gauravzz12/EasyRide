@@ -35,11 +35,12 @@ Create a web application for a cab system where users can enter the source and d
 
 ## **Snapshots of project:**
 <br>
+
+![Home](snapshots/Home.png)
+![Rides](snapshots/Rides.png)
 ![Bookings](snapshots/Bookings.png)
 ![Cabs](snapshots/Cabs.png)
-![Home](snapshots/Home.png)
 ![Mail](snapshots/Mail.png)
-![Rides](snapshots/Rides.png)
 
 
 
