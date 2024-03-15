@@ -45,7 +45,7 @@ function Bookings() {
   }
   async function cancelRide(id) {
     try {
-      await axios.delete(`https://easy-ride-server.vercel.app/bookings/${id}`);
+      await axios.delete(`https://easy-ride-server.vercel.app/bookings/delete/${id}`);
       
       setBookingHistory(updatedHistory);
     } catch (error) {

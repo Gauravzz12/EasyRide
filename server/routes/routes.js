@@ -14,6 +14,32 @@ router.get("/cabs",controller.getAllCabs);
 router.put("/cabs/update/:id", controller.updateCab) ;
 router.post("/bookings", controller.createBooking);
 router.get("/bookings/:cabId", controller.getBookingHistoryByCabId);
-// router.delete('/bookings/delete'.controller.cancelBooking);
+router.delete('/bookings/delete/:id'.controller.cancelBooking);
+
+app.post('/send', async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'gauravzz937@gmail.com', 
+                pass: 'Gaurav@1234'
+            }
+        });
+
+        let info = await transporter.sendMail({
+            from: 'gauravzz937@gmail.com',
+            to: email,
+            subject: 'Test Email',
+            text: 'This is a test email.'
+        });
+        console.log('Message sent: %s', info.messageId);
+        res.send('Email sent successfully!');
+    } catch (error) {
+        console.error('Error occurred while sending email:', error);
+        res.status(500).send('Failed to send email.');
+    }
+});
 module.exports = router; 
  

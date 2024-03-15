@@ -138,6 +138,10 @@ function Book() {
         axios.put(`https://easy-ride-server.vercel.app/cabs/update/${cabs.find((cab) => cab.cabId === cabId)._id}`, {
           isBooked: "Booked",
         });
+
+        axios.post("https://easy-ride-server.vercel.app/send", {
+          email,
+        });
   
         getCabs();
       })
