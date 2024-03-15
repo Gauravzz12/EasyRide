@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const nodemailer=require('nodemailer');
 router.use(cors());
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -23,8 +24,8 @@ router.post('/send', async (req, res) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'gauravzz937@gmail.com', 
-                pass: 'Gaurav@1234'
+                user: 'gaurav1234thakurgt@gmail.com', 
+                pass: 'pwhe bage juko mwyq'
             }
         });
 

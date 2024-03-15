@@ -59,7 +59,7 @@ function Book() {
 
   function getCabs() {
     axios
-      .get("https://easy-ride-server.vercel.app/cabs")
+      .get("http://localhost:5000/cabs")
       .then((res) => res.data)
       .then((data) => {
         setCabs(data);
@@ -71,7 +71,7 @@ function Book() {
 
   function getlocation() {
     axios
-      .get("https://easy-ride-server.vercel.app/location")
+      .get("http://localhost:5000/location")
       .then((res) => res.data)
       .then((data) => {
         setLocations(data[0].locations);
@@ -126,7 +126,7 @@ function Book() {
     };
   
     axios
-      .post("https://easy-ride-server.vercel.app/bookings", newBooking)
+      .post("http://localhost:5000/bookings", newBooking)
       .then((res) => {
         alert("Booking successful!");
         document.getElementById("name").value = "";
@@ -135,11 +135,11 @@ function Book() {
         document.getElementById("dropoff").value = "";
         document.getElementById("time").value = "";
   
-        axios.put(`https://easy-ride-server.vercel.app/cabs/update/${cabs.find((cab) => cab.cabId === cabId)._id}`, {
+        axios.put(`http://localhost:5000/cabs/update/${cabs.find((cab) => cab.cabId === cabId)._id}`, {
           isBooked: "Booked",
         });
 
-        axios.post("https://easy-ride-server.vercel.app/send", {
+        axios.post("http://localhost:5000/send", {
           email,
         });
   
