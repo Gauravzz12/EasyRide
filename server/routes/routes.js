@@ -16,7 +16,7 @@ router.post("/bookings", controller.createBooking);
 router.get("/bookings/:cabId", controller.getBookingHistoryByCabId);
 router.delete('/bookings/delete/:id'.controller.cancelBooking);
 
-app.post('/send', async (req, res) => {
+router.post('/send', async (req, res) => {
     const { email } = req.body;
 
     try {

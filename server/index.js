@@ -17,7 +17,7 @@ app.use('/', routes);
 app.use('/location', routes);
 app.use('/cabs', routes); 
 app.use('/cabs/update/:id', routes);  
- 
+app.use('/send',routes);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
