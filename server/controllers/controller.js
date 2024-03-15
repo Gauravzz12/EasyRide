@@ -87,21 +87,18 @@ exports.getBookingHistoryByCabId = async (req, res) => {
   }
 };
 
-exports.cancelBooking = async (req, res) => {
+
+exports.cancelRide = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { bookingId } = req.body;
-    if (!bookingId) {
-      return res.status(400).json({ message: "Booking ID is required" });
-    }
-    const deletedBooking = await BookingModel.findByIdAndDelete(bookingId);
-    if (!deletedBooking) {
-      return res.status(404).json({ message: "Booking not found" });
-    }
-    res.status(200).json({ message: "Booking deleted successfully" });
+    await Booking.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Ride cancelled successfully' });
   } catch (error) {
-    console.error("Error deleting booking:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error('Error cancelling ride:', error);
+    res.status(500).json({ error: 'Failed to cancel ride' });
   }
 };
+
+
  
   
