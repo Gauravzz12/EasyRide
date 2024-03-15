@@ -83,21 +83,32 @@ exports.getBookingHistoryByCabId = async (req, res) => {
     res.json(bookingHistory);
   } catch (error) {
     console.error("Error fetching booking history:", error);
-    res.status(500).json({ message: "Error fetching booking history" });
+    res.status(500).json([{ message: "Error fetching booking history" }]);
   }
 };
 
 
 exports.cancelRide = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; 
   try {
-    await Booking.findByIdAndDelete(id);
+    const booking = await BookingModel.findById(id);
+    if (!booking) {
+      return res.status(404).json({ error: 'Booking not found' });
+    }
+
+    await BookingModel.findByIdAndDelete(id);
+
+    await CabModel.findOneAndUpdate(
+      { cabId: booking.cabId },
+      { isBooked: 'Available' }
+    );
     res.status(200).json({ message: 'Ride cancelled successfully' });
   } catch (error) {
     console.error('Error cancelling ride:', error);
     res.status(500).json({ error: 'Failed to cancel ride' });
   }
 };
+
 
 
  

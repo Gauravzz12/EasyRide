@@ -22,28 +22,35 @@ function Bookings() {
       });
   }
   async function handleCabButtonClick(cabId) {
+    document.getElementsByClassName(
+      "CABId"
+    )[0].innerText = `Booking History of ${cabId.toUpperCase()}`;
     try {
       const res = await axios.get(
         `https://easy-ride-server.vercel.app/bookings/${cabId}`
       );
-      const updatedBookingHistory = res.data.map((booking) => ({
-        ...booking,
-        status: moment(booking.details[0].endTime, "HH:mm").isSameOrBefore(
-          moment()
-        )
-          ? "Completed"
-          : "Pending",
-      }));
-      const selectedCab = cabs.find((cab) => cab.cabId === cabId);
-      if (updatedBookingHistory[0].status === "Completed") {
-        await axios.put(
-          `https://easy-ride-server.vercel.app/cabs/update/${selectedCab._id}`,
-          {
-            isBooked: "Available",
-          }
-        );
+      let updatedBookingHistory;
+      if (res.data.length === 0) setBookingHistory(res.data);
+      else {
+        updatedBookingHistory = res.data.map((booking) => ({
+          ...booking,
+          status: moment(booking.details[0].endTime, "HH:mm").isSameOrBefore(
+            moment()
+          )
+            ? "Completed"
+            : "Pending",
+        }));
+        const selectedCab = cabs.find((cab) => cab.cabId === cabId);
+        if (updatedBookingHistory[0].status === "Completed") {
+          await axios.put(
+            `https://easy-ride-server.vercel.app/cabs/update/${selectedCab._id}`,
+            {
+              isBooked: "Available",
+            }
+          );
+        }
+        setBookingHistory(updatedBookingHistory);
       }
-      setBookingHistory(updatedBookingHistory);
     } catch (error) {
       console.error("Error fetching booking history:", error);
     }
@@ -53,8 +60,8 @@ function Bookings() {
       await axios.delete(
         `https://easy-ride-server.vercel.app/bookings/delete/${id}`
       );
-
-      setBookingHistory(updatedHistory);
+      handleCabButtonClick(bookingHistory[0].cabId);
+      alert("Ride cancelled successfully!");
     } catch (error) {
       console.error("Error cancelling ride:", error);
     }
@@ -62,7 +69,7 @@ function Bookings() {
 
   return (
     <div className="booking-container">
-      <h1>Booking History Of All Cabs</h1>
+      <h1>Booking History Of Cabs</h1>
       <div className="Cabs">
         {cabs.map((cab) => (
           <button
@@ -74,7 +81,7 @@ function Bookings() {
         ))}
       </div>
       <div className="Bookings">
-        <h2>Booking History</h2>
+        <h1 className="CABId"></h1>
         <table>
           <thead>
             <tr>
@@ -97,12 +104,18 @@ function Bookings() {
                 <td>{booking.cabId}</td>
                 <td>{booking.details[0].source}</td>
                 <td>{booking.details[0].destination}</td>
-                <td>{booking.details[0].bookingTime}</td>
-                <td>{booking.details[0].endTime}</td>
+                <td>
+                  {moment(booking.details[0].bookingTime, "HH:mm").format(
+                    "hh:mm"
+                  )}
+                </td>
+                <td>
+                  {moment(booking.details[0].endTime, "HH:mm").format("hh:mm")}
+                </td>
                 <td>{booking.status}</td>
                 <td>
                   {booking.status === "Pending" ? (
-                    <button onClick={() => cancelRide(booking.cabId)}>
+                    <button onClick={() => cancelRide(booking._id)}>
                       Cancel Ride
                     </button>
                   ) : (

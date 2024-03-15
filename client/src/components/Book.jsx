@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "./Book.css";
 import Logo from "../assets/Logo.jpg";
@@ -10,6 +10,17 @@ function Book() {
   const [shortestTime, setShortestTime] = useState(null);
   const [srcdest, setSrcDest] = useState([]);
   const [showBookings, setShowBookings] = useState(false);
+  const tableRef = useRef(null);
+
+  function scrollToTable() {
+    if (tableRef.current) {
+      tableRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  }
   function findShortestTime(locations, src, dest) {
     const time = {};
     const visited = {};
@@ -163,8 +174,15 @@ function Book() {
   useEffect(() => {
     if (shortestTime !== null) {
       getCabs();
+      setShowBookings(true);
     }
   }, [shortestTime]);
+
+  useEffect(() => {
+    if (showBookings) {
+      scrollToTable();
+    }
+  }, [showBookings]);
 
   return (
     <div>
@@ -201,7 +219,7 @@ function Book() {
         </div>
       </div>
       {showBookings && (
-        <div className="Bookings">
+        <div ref={tableRef} className="Bookings">
           <h2>Estimated Time : {shortestTime}</h2>
           <table>
             <thead>

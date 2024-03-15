@@ -66,6 +66,7 @@ function Cabs() {
           <h2>{cab.cabId.toUpperCase()}</h2>
           <p>Price: {cab.price}</p>
           <p>Position: {cab.currentPosition}</p>
+          <p>Status : {cab.isBooked}</p>
           <button onClick={() => handleUpdate(cab)}>Update</button>
         </div>
       ))}

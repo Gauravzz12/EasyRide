@@ -17,7 +17,7 @@ router.post("/bookings", controller.createBooking);
 router.get("/bookings/:cabId", controller.getBookingHistoryByCabId);
 router.delete('/bookings/delete/:id', controller.cancelRide);
 router.post('/send', async (req, res) => {
-    const { email, name, source, destination, bookingTime } = req.body;
+    const { cabId,email, name, source, destination, bookingTime } = req.body;
 
     try {
         let transporter = nodemailer.createTransport({
@@ -29,7 +29,7 @@ router.post('/send', async (req, res) => {
         });
 
         let info = await transporter.sendMail({
-            from: 'gauravzz937@gmail.com',
+            from: 'gaurav1234thakurgt@gmail.com',
             to: email,
             subject: 'Confirmation: Booking Details for Your Cab Ride',
             html: `
