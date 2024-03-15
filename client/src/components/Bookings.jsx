@@ -12,7 +12,7 @@ function Bookings() {
 
   function getCabs() {
     axios
-      .get("http://localhost:5000/cabs")
+      .get("https://easy-ride-server.vercel.app/cabs")
       .then((res) => res.data)
       .then((data) => {
         setCabs(data);
@@ -23,7 +23,7 @@ function Bookings() {
   }
   async function handleCabButtonClick(cabId) {
     try {
-      const res = await axios.get(`http://localhost:5000/bookings/${cabId}`);
+      const res = await axios.get(`https://easy-ride-server.vercel.app/bookings/${cabId}`);
       const updatedBookingHistory = res.data.map((booking) => ({
         ...booking,
         status: moment(booking.details[0].endTime, "HH:mm").isSameOrBefore(
@@ -34,7 +34,7 @@ function Bookings() {
       }));
       const selectedCab = cabs.find((cab) => cab.cabId === cabId);
       if (updatedBookingHistory[0].status === "Completed") {
-        await axios.put(`http://localhost:5000/cabs/update/${selectedCab._id}`, {
+        await axios.put(`https://easy-ride-server.vercel.app/cabs/update/${selectedCab._id}`, {
           isBooked: "Available",
         });
       }
@@ -45,7 +45,7 @@ function Bookings() {
   }
   async function cancelRide(id) {
     try {
-      await axios.delete(`http://localhost:5000/bookings/delete/${id}`);
+      await axios.delete(`https://easy-ride-server.vercel.app/bookings/delete/${id}`);
       
       setBookingHistory(updatedHistory);
     } catch (error) {

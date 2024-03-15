@@ -14,7 +14,7 @@ function Cabs() {
 
   function getCabs() {
     axios
-      .get("http://localhost:5000/cabs")
+      .get("https://easy-ride-server.vercel.app/cabs")
       .then((res) => res.data)
       .then((data) => {
         setCabs(data);
@@ -39,7 +39,7 @@ function Cabs() {
     console.log("Selected cab ID:", selectedCab._id);
     axios
       .put(
-        `http://localhost:5000/cabs/update/${selectedCab._id}`,
+        `https://easy-ride-server.vercel.app/cabs/update/${selectedCab._id}`,
         updatedCabData
       )
       .then((res) => {
