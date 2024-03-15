@@ -1,0 +1,117 @@
+body {
+    background: linear-gradient(135deg, lightblue, #6495ED, #8A2BE2);
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+    max-width: 100%; 
+    height: auto;
+    border-radius: 8px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #4CAF50;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.Bookings {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.Bookings table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Bookings th,
+.Bookings td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.Bookings th {
+    background-color: #f2f2f2;
+}
+
+.Bookings th:first-child,
+.Bookings td:first-child {
+    padding-left: 0;
+}
+
+.Bookings th:last-child,
+.Bookings td:last-child {
+    padding-right: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+
+    form {
+        flex: 1;
+    }
+
+    .image-container img {
+        max-width: 450px; 
+        width: auto;
+        height: auto;
+    }
+}

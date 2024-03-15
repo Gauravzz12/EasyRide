@@ -1,0 +1,17 @@
+.Cabs{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+.booking-container{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    
+}
+
+button{
+    border: 2px solid black;
+    
+}
