@@ -6,7 +6,9 @@ router.use(cors());
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 const controller = require("../controllers/controller.js");
-
+router.get("/", (req, res) => {
+    res.send("Welcome to the Cab Booking API");
+});
 router.get("/location",controller.getAllLocations);
 router.get("/cabs",controller.getAllCabs);
 router.put("/cabs/update/:id", controller.updateCab) ;
