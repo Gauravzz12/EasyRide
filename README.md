@@ -36,14 +36,10 @@ Create a web application for a cab system where users can enter the source and d
 ## **Snapshots of project:**
 <br>
 
-[![Image 1](https://i.imgur.com/OY0gH8B.jpg)](https://imgur.com/a/OY0gH8B)
-**Fill the form:**<br>
-[![Image 2](https://i.imgur.com/ba56X2t.jpg)](https://imgur.com/ba56X2t)
-**After Clicking Book Now button:**<br>
-[![Image 3](https://i.imgur.com/TQCXroA.jpg)](https://imgur.com/a/TQCXroA)
-**After clicking Book button on the cabs section:**<br>
-[![Image 4](https://i.imgur.com/2JhZ0Kh.jpg)](https://imgur.com/a/2JhZ0Kh)
-**After clicking Book button on the cabs section:**<br>
-[![Image 5](https://i.imgur.com/qj4XZsy.jpg)](https://imgur.com/a/qj4XZsy)
+![Fill the form](https://imgur.com/ba56X2t)
+![After Clicking Book Now button](https://imgur.com/a/TQCXroA)
+![After clicking Book button on the cabs section](https://imgur.com/a/2JhZ0Kh)
+![After clicking Book button on the cabs section](https://imgur.com/a/qj4XZsy)
+
 
 
