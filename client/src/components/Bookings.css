@@ -22,6 +22,5 @@ button{
   
   .disabled-button:hover {
     cursor: not-allowed;
-    cursor: url('path_to_red_cross_cursor.png'), not-allowed; 
   }
   
