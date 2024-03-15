@@ -109,12 +109,12 @@ function Book() {
       .add(shortestTime, "minutes")
       .add(arrivalTime, "minutes")
       .format("HH:mm");
-      console.log(cabs);
-    if (cabs.find((cab) => cab.cabId === cabId).isBooked=="Booked") {
+    console.log(cabs);
+    if (cabs.find((cab) => cab.cabId === cabId).isBooked == "Booked") {
       alert("This cab is already booked. Please choose another one.");
       return;
     }
-  
+
     const newBooking = {
       cabId,
       name,
@@ -124,7 +124,7 @@ function Book() {
       bookingTime,
       endTime,
     };
-  
+
     axios
       .post("https://easy-ride-server.vercel.app/bookings", newBooking)
       .then((res) => {
@@ -134,22 +134,31 @@ function Book() {
         document.getElementById("pickup").value = "";
         document.getElementById("dropoff").value = "";
         document.getElementById("time").value = "";
-  
-        axios.put(`https://easy-ride-server.vercel.app/cabs/update/${cabs.find((cab) => cab.cabId === cabId)._id}`, {
-          isBooked: "Booked",
-        });
+
+        axios.put(
+          `https://easy-ride-server.vercel.app/cabs/update/${
+            cabs.find((cab) => cab.cabId === cabId)._id
+          }`,
+          {
+            isBooked: "Booked",
+          }
+        );
 
         axios.post("https://easy-ride-server.vercel.app/send", {
+          cabId,
+          name,
+          source: pickupLocation,
+          destination: dropoffLocation,
+          bookingTime,
           email,
         });
-  
+
         getCabs();
       })
       .catch((error) => {
         console.error("Error booking cab:", error);
       });
   }
-  
 
   useEffect(() => {
     if (shortestTime !== null) {
